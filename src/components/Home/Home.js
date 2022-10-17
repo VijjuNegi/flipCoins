@@ -13,10 +13,28 @@ const Home = () => {
   ]);
   const [activeButton, setActiveButton] = useState(null);
 
+  // const coinsHandle = (event) => {
+  //   setCoins(() => {
+  //     setActiveButton(event.target.getAttribute("data-index"));
+  //     console.log(event.target.value);
+
+  //   });
+  // };
+
   const coinsHandle = (event) => {
-    setCoins(() => {
-      console.log(event.target.value);
-    });
+    const setCoins = setActiveButton(event.target.getAttribute("data-index"));
+    const data = event.target.value;
+    fetch("https://api.waxsweden.org/v1/chain/get_table_rows", {
+      method: "POST",
+      data,
+      setCoins,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   const buttonHandler = (event) => {
@@ -32,7 +50,6 @@ const Home = () => {
           return (
             <div key={index} className="col-6 mt-2 text-center">
               <button
-                // onChange={handleAllButton}
                 onClick={buttonHandler}
                 data-index={index}
                 data-coin={currency}
@@ -52,19 +69,13 @@ const Home = () => {
     <>
       <div className="container" className={classes.topMargin}>
         <div className="row">
-          <div className="col"></div>
-          <div className="col text-center">
+          <div className="col-md-3 col-xl-4"></div>
+          <div className="col-md-6 col-xl-4 p-4 text-center">
             <div className="row"></div>
             <div className="row">
               <h2 className="text-center">I LIKE</h2>
               <div className="col text-center">
-                <button
-                  onClick={coinsHandle}
-                  value={coins}
-                  className={classes.mainButton}
-                >
-                  HEADS
-                </button>
+                <button className={classes.mainButton}>HEADS</button>
               </div>
               <div className="col text-center">
                 <button className={classes.mainButton}>TAILS</button>
@@ -79,13 +90,17 @@ const Home = () => {
             </div>
             <div className="row mt-4">
               <div className="col text-center">
-                <button className={classes.mainButton}>
+                <button
+                  onClick={coinsHandle}
+                  value={coins}
+                  className={classes.mainButton}
+                >
                   DOUBLE OR NOTHING
                 </button>
               </div>
             </div>
           </div>
-          <div className="col"></div>
+          <div className="col-md-3 col-xl-4"></div>
         </div>
       </div>
     </>

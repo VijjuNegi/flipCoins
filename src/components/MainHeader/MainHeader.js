@@ -7,7 +7,7 @@ import classesBtn from "../../utils/css/UI/Button.module.css";
 const MainHeader = (props) => {
   const [isUser, setIsUser] = useState([]);
 
-  const userData = ["Rahul"];
+  const userData = ["RAM"];
 
   const logoutHandler = () => {
     console.log("button is click");

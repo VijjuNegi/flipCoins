@@ -31,16 +31,16 @@ const discord = (
 );
 
 const socialIcons = [twitter, discord];
-console.log(socialIcons);
+// console.log(socialIcons);
 const displayIcon = socialIcons.map((item) => {
   return item;
 });
 // console.log(id);
+
 const Footer = () => {
   return (
     <div className="container mt-5">
       <div className="row mt-5">
-        <div className="col"></div>
         <div className="col">
           <h2 className="text-center">
             {displayIcon.map((item) => (
@@ -48,7 +48,6 @@ const Footer = () => {
             ))}
           </h2>
         </div>
-        <div className="col"></div>
       </div>
     </div>
   );
